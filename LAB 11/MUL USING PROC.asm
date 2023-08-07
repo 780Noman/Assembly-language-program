@@ -1,0 +1,24 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+.CODE
+MAIN PROC
+    MOV AL,1
+    MOV BL,2
+    
+    CALL M1
+    CALL M1  
+    CALL M1
+    MOV DL,AL 
+    ADD DL,48
+    MOV AH,2
+    INT 21H
+    
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+M1 PROC
+    MUL BL      ;AX=AL*BL
+    RET
+    M1 ENDP
+END MAIN

@@ -1,0 +1,59 @@
+;PROGRAM  TO DIVIDE TWO NUMBER
+.MODEL SMALL
+.STACK 100H
+.DATA   
+REM DB 'REMINDER IS :$'
+COF DB 'COEFFICINT IS :$'
+Q DB ?
+R DB ?
+.CODE
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+    MOV AX,21
+    MOV BL,5  
+   ; MOV AH,1
+    ;INT 21H
+    ;MOV Q,AL
+    ;MOV AH,1
+    ;INT 21H
+    ;MOV R,AL
+    ;MOV AL,Q
+    ;MOV BL,R
+    DIV BL
+    MOV R,Ah
+    MOV Q,Al 
+    LEA DX,COF
+    MOV AH,9
+    INT 21H
+    
+    MOV DL,Q 
+    ADD DL,48
+    MOV AH,2
+    INT 21H  
+    CALL ENTER_KEY 
+    MOV DX,OFFSET REM
+    MOV AH,9
+    INT 21H
+    
+   
+    
+    MOV DL,R
+    ADD DL,48
+    MOV AH,2
+    INT 21H
+    
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+ENTER_KEY PROC
+     MOV DL,10
+    MOV AH,2
+    INT 21H
+    
+    MOV DL,13
+    MOV AH,2
+    INT 21H 
+    RET
+    ENTER_KEY ENDP
+END MAIN

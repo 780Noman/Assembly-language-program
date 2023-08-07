@@ -1,0 +1,57 @@
+;PROGRAM TO CHECK THE ENTERED CHARATER IS VOWEL OR CONSONANT
+.MODEL SMALL           
+.STACK 100H
+.DATA
+MSG DB 10,13,'ENTER A CARACTER:$'
+MSG1 DB 10,13,'YOU ENTER VOWEL CHARACTER...$'
+MSG2 DB 10,13,'YOU ENTER CONSONANT CHARACTER...$'
+.CODE
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+    MOV DX,OFFSET MSG
+    MOV AH,9
+    INT 21H
+    MOV AH,1
+    INT 21H
+    
+    CMP AL,'A'
+    je VOWEL
+    CMP AL,'a'
+    JE VOWEL
+    
+    CMP AL,'E'
+    JE VOWEL
+    CMP AL,'e'
+    JE VOWEL
+    
+    CMP AL,'I'
+    JE VOWEL
+    CMP AL,'i'
+    JE VOWEL
+    
+    CMP AL,'O'
+    JE VOWEL
+    CMP AL,'o'
+    JE VOWEL
+    
+    CMP AL,'U'
+    JE VOWEL
+    CMP AL,'u'
+    JE VOWEL
+    
+    MOV DX,OFFSET MSG2
+    MOV AH,9
+    INT 21H
+    JMP QUIT
+    
+    VOWEL:
+    MOV DX,OFFSET MSG1
+    MOV AH,9
+    INT 21H 
+    
+    QUIT:
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN

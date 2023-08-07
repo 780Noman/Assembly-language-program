@@ -1,0 +1,45 @@
+;Program to find number is positive or negative
+.MODEL SMALL
+.STACK 100H
+.DATA
+M1 DB 10,13,'ENTER A NUMBER :$'
+M2 DB 10,13,'NUMBER IS POSITIVE$'
+M3 DB 10,13,'NUMBER IS NEGATIVE..$'
+M4 DB 10,13,'NUMBER IS ZERO...$'
+.CODE
+MAIN PROC  
+    MOV AX,@DATA
+    MOV DS,AX
+    LEA DX,M1
+    MOV AH,9
+    INT 21H
+    MOV AH,1
+    INT 21H
+    MOV BL,AL
+    MOV CL,30H  ;ASCCI CODE OF < OR >
+    CMP BL,CL
+    JG POSI
+    JL NEGI
+    JZ ZERO
+    POSI:
+    LEA DX,M2
+    MOV AH,9
+    INT 21H
+    CALL EXIT
+    NEGI:
+    LEA DX,M3
+    MOV AH,9
+    INT 21H  
+    CALL EXIT
+    ZERO:
+    LEA DX,M4
+    MOV AH,9
+    INT 21H   
+    CALL EXIT
+    MAIN ENDP  
+EXIT PROC
+    MOV AH,4CH
+    INT 21H
+    RET
+    EXIT ENDP
+END MAIN

@@ -1,0 +1,27 @@
+.MODEL SMALL
+.STACK 100H
+.DATA    
+MSG DB 'HELLO WORLD$'
+.CODE
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+    CALL S_PRINT
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+
+S_PRINT PROC
+    MOV DX,SI   
+    MOV CX,11
+    L:
+    MOV DX,[SI]
+    MOV AH,2
+    INT 21H
+    INC SI 
+    LOOP L
+    RET
+    S_PRINT ENDP 
+END MAIN
+
+    

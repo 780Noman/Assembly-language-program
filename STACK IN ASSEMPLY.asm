@@ -1,0 +1,18 @@
+;stack in Assemply language  
+;STACK MUST THE ACCEPT THE >16 BIT VALUE THAT ARE BOTH VAR/REG
+.model small
+.stacK 100h
+.CODE
+.DATA
+MAIN PROC
+    MOV AX,2
+    PUSH AX  
+    POP AX
+    MOV DX,AX
+    ADD DX,48
+    MOV AH,2
+    INT 21H
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
